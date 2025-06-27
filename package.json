@@ -1,0 +1,34 @@
+{
+  "name": "flat2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+
+
+  "start": "node app.js",
+  "restart": "npm stop && npm start",
+  "stop": "pkill -f node || true",
+
+
+
+
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "dynohot": "^1.2.1",
+    "express": "^4.21.2",
+    "gray-matter": "^4.0.3",
+    "multer": "^1.4.5-lts.1",
+    "nunjucks": "^3.2.4",
+    "showdown": "^2.1.0"
+  },
+  "devDependencies": {
+    "chokidar": "^4.0.3",
+    "nodemon": "^3.1.9"
+  }
+}

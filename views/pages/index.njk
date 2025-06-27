@@ -1,0 +1,90 @@
+{% extends "layouts/base.njk" %}
+{% block title %}Home | {{ settings['cms-title'] }}{% endblock %}
+{% block content %}
+
+    <!--<h1>{{ settings['cms-title'] }}</h1>-->
+    <h2 style="text-align: center;">⭐ {{ settings['cms-title'] }} ⭐</h2>
+    <p style="text-align: center;">{{ settings['cms-desc'] }}</p>
+    <hr style="margin: 10px; color: white;">
+    <div class="stats-container">
+        <section class="stats-section">
+            <h2>📊 Number of Posts per Month 📊</h2>
+            <div class="graph">
+                {% for month, count in postCounts %}
+                    <div class="bar-container">
+                        <div class="bar" style="height: {{ (count / maxPostCount * 100) }}px;">
+                            <span class="bar-label">{{ count }}</span>
+                        </div>
+                        <span class="x-label">{{ month }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="stats-section">
+            <h2>❤️ Likes per Post ❤️</h2>
+            <div class="graph">
+                {% for post in topPosts %}
+                    <div class="bar-container">
+                        <div class="bar" style="height: {{ (post.likes / maxLikes * 100) }}px;">
+                            <span class="bar-label">{{ post.likes }}</span>
+                        </div>
+                        <span class="x-label">{{ post.title | truncate(10) }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+{% endblock %}
+
+{% block styles %}
+    <style>
+        .stats-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+        .stats-section {
+            width: 48%;
+        }
+        .graph {
+            display: flex;
+            align-items: flex-end;
+            height: 200px;
+            border-bottom: 2px solid #333;
+            border-left: 2px solid #333;
+        }
+        .bar-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 5px;
+        }
+        .bar {
+            width: 30px;
+            background-color: #007bff;
+            margin-bottom: 5px;
+            position: relative;
+        }
+        .bar-label {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+        }
+        .x-label {
+            font-size: 12px;
+            text-align: center;
+            word-wrap: break-word;
+            max-width: 50px;
+        }
+    </style>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        console.log('Page loaded with {{ postCounts | length }} months of data and {{ topPosts | length }} top posts.');
+    </script>
+{% endblock %}

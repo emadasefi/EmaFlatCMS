@@ -1,0 +1,37 @@
+{% extends "layouts/base.njk" %}
+{% block title %}Add Post | {{ settings['cms-title'] }}{% endblock %}
+{% block content %}
+    <h1>Add New Post</h1>
+    <form action="/posts/add" method="post" enctype="multipart/form-data">
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title" required><br><br>
+
+        <label for="date">Date:</label><br>
+        <input type="text" id="date" name="date" readonly><br><br>
+
+        <input type="hidden" id="filename" name="filename">
+
+        <label for="content">Content (Markdown):</label><br>
+        <textarea id="content" name="content" rows="10" cols="80" required></textarea><br><br>
+
+        <label for="files">Upload Files:</label><br>
+        <input type="file" id="files" name="files" multiple><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        // Set current date
+        let now = new Date();
+        let dateString = now.getFullYear() + '-' + 
+                         String(now.getMonth() + 1).padStart(2, '0') + '-' + 
+                         String(now.getDate()).padStart(2, '0');
+        document.getElementById('date').value = dateString;
+
+        // Generate filename from title
+        document.getElementById('title').addEventListener('input', function() {
+            let filename = this.value.toLowerCase().replace(/[^a-z0-9]+/g, '-') + '.md';
+            document.getElementById('filename').value = filename;
+        });
+    </script>
+{% endblock %}

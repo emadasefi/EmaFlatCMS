@@ -1,0 +1,52 @@
+{% extends "layouts/base.njk" %}
+{% block title %}Settings | {{ settings['cms-title'] }}{% endblock %}
+{% block content %}
+    <div class="settings-container">
+        <h1>Settings</h1>
+        <form method="POST" action="/setting">
+            <div class="settings-grid">
+                <div class="setting-item">
+                    <label for="cms-title">CMS Title:</label>
+                    <input type="text" id="cms-title" name="cms-title" value="{{ settings['cms-title'] }}">
+                </div>
+                <div class="setting-item">
+                    <label for="cms-desc">Description:</label>
+                    <textarea class="textarea-setting" id="cms-desc" name="cms-desc">{{ settings['cms-desc'] }}</textarea>
+                </div>
+                <br>
+                <div class="setting-item">
+                    <label>Header Links:</label>
+                    <div class="header-links-container">
+                        <div class="header-links-header">
+                            <div>Path</div>
+                            <div>Label</div>
+                        </div>
+                        {% for path, label in settings.header %}
+                            <div class="header-link-item">
+                                <div>{{ path }}</div>
+                                <div>
+                                    <input type="text" name="header-label-{{ path | replace('/', '_') }}" value="{{ label }}">
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <br>
+                <div class="setting-item">
+                    <label for="footer">Footer:</label>
+                    <input type="text" id="footer" name="footer" value="{{ settings.footer }}">
+                </div>
+                <div class="setting-item">
+                    <label for="direction">Direction:</label>
+                    <select id="direction" name="direction">
+                        <option value="ltr" {% if settings.direction == 'ltr' %}selected{% endif %}>Left to Right</option>
+                        <option value="rtl" {% if settings.direction == 'rtl' %}selected{% endif %}>Right to Left</option>
+                    </select>
+                </div>
+                <br>
+                <br>
+            </div>
+            <button type="submit" class="btn btn-edit">Save Settings</button>
+        </form>
+    </div>
+{% endblock %}

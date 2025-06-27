@@ -1,0 +1,12 @@
+{
+  "cms-title": "EmaFlat",
+  "cms-desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Egestas purus viverra accumsan in nisl nisi Arcu cursus vitae congue mauris rhoncus aenean vel elit scelerisque ",
+  "header": {
+    "/": "Home",
+    "/setting": "Settings",
+    "/blog": "Blog",
+    "/about": "About Us"
+  },
+  "footer": "© 2025 Emad Asefi",
+  "direction": "ltr"
+}

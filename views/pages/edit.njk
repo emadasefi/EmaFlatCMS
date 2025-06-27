@@ -1,0 +1,20 @@
+{% extends "layouts/base.njk" %}
+{% block title %}Edit Post | {{ settings['cms-title'] }}{% endblock %}
+{% block content %}
+    <h1>Edit Post</h1>
+    <form action="/posts/edit/{{ filename }}" method="post">
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title" value="{{ data.title }}"><br><br>
+    
+        <label for="content">Content (Markdown):</label><br>
+        <textarea id="content" name="content" rows="10" cols="80">{{ content }}</textarea><br><br>
+    
+         <label for="date">Date:</label><br>
+        <input type="date" id="date" name="date" value="{{ data.date }}"><br><br>
+    
+        <input type="hidden" name="filename" value="{{ filename }}">
+    
+        <input type="submit" value="Update">
+    </form>
+    
+{% endblock %}
